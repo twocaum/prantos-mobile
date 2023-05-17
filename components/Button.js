@@ -2,26 +2,44 @@ import { StyleSheet, View, Pressable, Text } from 'react-native';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 export default function Button({ label, theme, onPress}) {
-    if (theme === "primary") {
+    if (theme === "camera") {
       return (
-        <View
-        style={[styles.buttonContainer, { borderWidth: 4, borderColor: "#ffd33d", borderRadius: 18 }]}
-        >
+        <View style={[styles.buttonContainer]}>
           <Pressable
-            style={[styles.button, { backgroundColor: "#fff" }]}
+            style={[styles.button, { backgroundColor: "#2980B9" }]}
             onPress={onPress}
           >
             <FontAwesome
-              name="picture-o"
+              name="camera"
               size={18}
-              color="#25292e"
+              color="#ECF0F1"
               style={styles.buttonIcon}
             />
-            <Text style={[styles.buttonLabel, { color: "#25292e" }]}>{label}</Text>
+            <Text style={[styles.buttonLabel, { color: "#ECF0F1" }]}>{label}</Text>
           </Pressable>
       </View>
       );
     }
+    else if(theme == "gallery") {
+      return (
+          <View
+          style={[styles.buttonContainer]}
+          >
+            <Pressable
+              style={[styles.button, { backgroundColor: "#fff" }]}
+              onPress={onPress}
+            >
+              <FontAwesome
+                name="picture-o"
+                size={18}
+                color="#25292e"
+                style={styles.buttonIcon}
+              />
+              <Text style={[styles.buttonLabel, { color: "#25292e" }]}>{label}</Text>
+            </Pressable>
+        </View>
+        );
+      }
   
     return (
       <View style={styles.buttonContainer}>
