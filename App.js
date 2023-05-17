@@ -1,19 +1,11 @@
 import { StyleSheet, View} from 'react-native';
 import { useState } from 'react';
-import {pickImageAsync} from './utils/ImageUtils';
-
-import Button from './components/Button';
+import ImageLoader from './components/ImageLoader';
 
 export default function App() {
-
-  const [selectedImage, setSelectedImage] = useState(null);
-
   return (
     <View style={styles.container}>
-      <View style={styles.footerContainer}>
-        <Button theme="camera" label="Take a photo"/>
-        <Button theme="gallery" label="Choose from your gallery"  onPress={pickImageAsync} />
-      </View>
+      <ImageLoader></ImageLoader>
     </View>
   );
 }
