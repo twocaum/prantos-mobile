@@ -1,5 +1,4 @@
 import { StyleSheet, View} from 'react-native';
-import { useState } from 'react';
 import ImageLoader from './components/ImageLoader';
 
 export default function App() {

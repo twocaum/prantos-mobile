@@ -1,28 +1,45 @@
+import {Camera} from 'expo-camera'
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, View, Pressable, Text } from 'react-native';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-
+import AppCamera from './AppCamera';
+import { useState } from 'react';
 
 export default function ImageLoader() {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [startCamera,setStartCamera] = useState(false);
+
     const pickImageAsync = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
           quality: 1,
         });
     
         if (!result.canceled) {
-        alert('An image was selected');
+          setSelectedImage(result.assets[0].uri);
         } 
-        else {
-          alert('You did not select any image.');
-        }
     };
 
+    const __startCamera = async () => {
+      const {status} = await Camera.requestPermissionsAsync()
+      if(status === 'granted'){
+        setStartCamera(true)
+     
+      }else{
+        Alert.alert("Access denied");
+      }
+    }
 
-    return (
+    const closeCamera = async () => {
+      setStartCamera(false)
+    }
+
+
+    return startCamera ? (<AppCamera closeCamera={closeCamera}></AppCamera>) : (
         <View>
             <View style={[styles.buttonContainer]}>
                 <Pressable
                     style={[styles.button, { backgroundColor: "#2980B9" }]}
+                    onPress={__startCamera}
                 >
                     <FontAwesome
                     name="camera"
@@ -48,6 +65,7 @@ export default function ImageLoader() {
                 <Text style={[styles.buttonLabel, { color: "#25292e" }]}>{"Choose from your gallery"}</Text>
                 </Pressable>
             </View>
+
         </View>
     )
 }

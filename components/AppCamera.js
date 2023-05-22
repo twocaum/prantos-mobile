@@ -1,0 +1,95 @@
+import {SafeAreaView, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Camera} from 'expo-camera'
+import { useState } from 'react';
+import { MaterialIcons } from '@expo/vector-icons'; 
+
+
+export default function AppCamera({closeCamera}) {
+    const [previewVisible, setPreviewVisible] = useState(false)
+    const [capturedImage, setCapturedImage] = useState(null)
+
+    const __takePicture = async () => {
+        if (!camera) return
+        const photo = await camera.takePictureAsync()
+        console.log(photo)
+        setPreviewVisible(true)
+        setCapturedImage(photo)
+    };
+
+    return (
+            <Camera
+                style={{
+                    flex: 1,
+                    width:"100%",
+                }}
+                ref={(r) => {
+                camera = r
+                }}
+            >
+                <SafeAreaView>
+                    <View>
+                        <TouchableOpacity
+                            onPress={closeCamera}
+                            style={{
+                                top: 10,
+                                left: 10,
+                                flexDirection: 'row',
+                                flex: 0,
+                            }}
+                        >
+                            <MaterialIcons name="keyboard-return" size={20} color="white" />
+                            <Text 
+                                style={{
+                                    fontSize: 15,
+                                    color: "white",
+                                    position: "relative"
+                                }}
+                            >
+                                Return
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </SafeAreaView>
+                <View
+                    style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        flexDirection: 'row',
+                        flex: 1,
+                        width: '100%',
+                        padding: 20,
+                        justifyContent: 'space-between'
+                    }}
+                >
+                    <View
+                        style={{
+                            alignSelf: 'center',
+                            flex: 1,
+                            alignItems: 'center'
+                        }}
+                    >
+
+                        <TouchableOpacity
+                            onPress={__takePicture}
+                            style={{
+                                width: 70,
+                                height: 70,
+                                bottom: 0,
+                                borderRadius: 50,
+                                backgroundColor: '#fff'
+                            }}
+                        />
+                    </View>
+                </View>
+            </Camera>   
+    )
+
+    
+}
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: 'black'
+    }
+  });
