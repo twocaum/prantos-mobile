@@ -1,7 +1,7 @@
-import {SafeAreaView, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Camera} from 'expo-camera'
 import { useState } from 'react';
-import { MaterialIcons } from '@expo/vector-icons'; 
+import ReturnMenu from './ReturnMenu';
 
 
 export default function AppCamera({closeCamera}) {
@@ -26,30 +26,7 @@ export default function AppCamera({closeCamera}) {
                 camera = r
                 }}
             >
-                <SafeAreaView>
-                    <View>
-                        <TouchableOpacity
-                            onPress={closeCamera}
-                            style={{
-                                top: 10,
-                                left: 10,
-                                flexDirection: 'row',
-                                flex: 0,
-                            }}
-                        >
-                            <MaterialIcons name="keyboard-return" size={20} color="white" />
-                            <Text 
-                                style={{
-                                    fontSize: 15,
-                                    color: "white",
-                                    position: "relative"
-                                }}
-                            >
-                                Return
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                </SafeAreaView>
+                <ReturnMenu onPress={closeCamera}></ReturnMenu>
                 <View
                     style={{
                         position: 'absolute',

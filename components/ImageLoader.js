@@ -20,7 +20,7 @@ export default function ImageLoader() {
     };
 
     const __startCamera = async () => {
-      const {status} = await Camera.requestPermissionsAsync()
+      const {status} = await Camera.requestCameraPermissionsAsync()
       if(status === 'granted'){
         setStartCamera(true)
      
