@@ -2,9 +2,10 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Camera} from 'expo-camera'
 import { useState } from 'react';
 import ReturnMenu from './ReturnMenu';
+import CameraPreview from './CameraPreview';
 
 
-export default function AppCamera({closeCamera}) {
+export default function AppCamera({returnView}) {
     const [previewVisible, setPreviewVisible] = useState(false)
     const [capturedImage, setCapturedImage] = useState(null)
 
@@ -16,7 +17,14 @@ export default function AppCamera({closeCamera}) {
         setCapturedImage(photo)
     };
 
-    return (
+    const closePreview = async () => {
+        setPreviewVisible(false)
+      }
+
+    return previewVisible && capturedImage ? (
+        <CameraPreview photo={capturedImage} returnView={closePreview}> 
+        </CameraPreview>
+        ) : (
             <Camera
                 style={{
                     flex: 1,
@@ -26,7 +34,7 @@ export default function AppCamera({closeCamera}) {
                 camera = r
                 }}
             >
-                <ReturnMenu onPress={closeCamera}></ReturnMenu>
+                <ReturnMenu onPress={returnView}></ReturnMenu>
                 <View
                     style={{
                         position: 'absolute',

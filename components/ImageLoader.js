@@ -34,7 +34,7 @@ export default function ImageLoader() {
     }
 
 
-    return startCamera ? (<AppCamera closeCamera={closeCamera}></AppCamera>) : (
+    return startCamera ? (<AppCamera returnView={closeCamera}></AppCamera>) : (
         <View>
             <View style={[styles.buttonContainer]}>
                 <Pressable
