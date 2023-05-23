@@ -17,12 +17,13 @@ export default function AppCamera({returnView}) {
         setCapturedImage(photo)
     };
 
-    const closePreview = async () => {
+    const retakePicture = async () => {
+        setCapturedImage(null)
         setPreviewVisible(false)
       }
 
     return previewVisible && capturedImage ? (
-        <CameraPreview photo={capturedImage} returnView={closePreview}> 
+        <CameraPreview photo={capturedImage} retakePicture={retakePicture}> 
         </CameraPreview>
         ) : (
             <Camera

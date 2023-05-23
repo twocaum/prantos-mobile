@@ -1,6 +1,5 @@
-import {ImageBackground, View} from 'react-native';
-import ReturnMenu from './ReturnMenu';
-export default function CameraPreview({photo, returnView}) {
+import {ImageBackground, View, TouchableOpacity, Text} from 'react-native';
+export default function CameraPreview({photo, retakePicture}) {
     return (
       <View
         style={{
@@ -14,9 +13,61 @@ export default function CameraPreview({photo, returnView}) {
           source={{uri: photo && photo.uri}}
           style={{
             flex: 1
-          }}>
-          <ReturnMenu onPress={returnView}></ReturnMenu>
-        
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              padding: 15,
+              justifyContent: 'flex-end'
+            }}
+          >
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}
+            >
+              <TouchableOpacity
+                onPress={retakePicture}
+                style={{
+                  width: 130,
+                  height: 40,
+  
+                  alignItems: 'center',
+                  borderRadius: 4
+                }}
+              >
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontSize: 20
+                  }}
+                >
+                  Retake Photo
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  width: 130,
+                  height: 40,
+  
+                  alignItems: 'center',
+                  borderRadius: 4
+                }}
+              >
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontSize: 20
+                  }}
+                >
+                  Save
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </ImageBackground>
       </View>
     )
