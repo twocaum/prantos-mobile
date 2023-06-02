@@ -38,7 +38,7 @@ export default function ImageLoader() {
         <View>
             <View style={[styles.buttonContainer]}>
                 <Pressable
-                    style={[styles.button, { backgroundColor: "#2980B9" }]}
+                    style={[styles.button, { backgroundColor: "#012233" }]}
                     onPress={__startCamera}
                 >
                     <FontAwesome

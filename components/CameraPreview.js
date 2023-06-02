@@ -42,7 +42,7 @@ export default function CameraPreview({photo, retakePicture}) {
                 <Text
                   style={{
                     color: '#fff',
-                    fontSize: 20
+                    fontSize: 15
                   }}
                 >
                   Retake Photo
@@ -60,10 +60,10 @@ export default function CameraPreview({photo, retakePicture}) {
                 <Text
                   style={{
                     color: '#fff',
-                    fontSize: 20
+                    fontSize: 15
                   }}
                 >
-                  Save
+                  Save & Convert
                 </Text>
               </TouchableOpacity>
             </View>
