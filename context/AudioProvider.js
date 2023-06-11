@@ -34,10 +34,9 @@ export class AudioProvider extends Component {
         album = await this.getAlbum()
 
         let media = await MediaLibrary.getAssetsAsync({
-            mediaType: 'photo',
+            mediaType: 'video',
             album: album
         })
-
 
         this.setState({ ...this.state, audioFiles: media.assets })
     }
