@@ -5,6 +5,7 @@ import { AudioContext } from "../context/AudioProvider"
 import { SafeAreaView } from "react-native-safe-area-context"
 import AudioListItem from "../components/AudioListItem"
 import OptionModal from "../components/OptionModel"
+import { Audio } from 'expo-av'
 
 export default function AudioList() {
     const context = useContext(AudioContext)
@@ -12,6 +13,25 @@ export default function AudioList() {
 
     const [optionModalVisible, setOptionModalVisible] = useState(false);
     const [currentItem, setCurrentItem] = useState({})
+    const [sound, setSound] = useState();
+
+    convertLocalIdentifierToAssetLibrary = (localIdentifier, ext) => {
+        const hash = localIdentifier.split('/')[0];
+        return `assets-library://asset/asset.${ext}?id=${hash}&ext=${ext}`;
+    };
+
+    const handleAudioPress = async (audio) => {
+        // TO-DO: mudar essa gambiarra
+        let uri = convertLocalIdentifierToAssetLibrary(audio.id, 'mp4')
+        const { sound } = await Audio.Sound.createAsync(
+            { uri: uri },
+            { shouldPlay: true }
+        );
+
+        setSound(sound)
+
+        await sound.playAsync()
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -24,7 +44,8 @@ export default function AudioList() {
                         onOptionPress={() => {
                             setCurrentItem(item)
                             setOptionModalVisible(true)
-                        }} />
+                        }}
+                        onAudioPress={() => handleAudioPress(item)} />
                 )}
             </ScrollView>
             <OptionModal
