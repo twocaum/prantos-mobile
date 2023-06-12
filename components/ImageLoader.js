@@ -2,6 +2,8 @@ import { Camera } from 'expo-camera'
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, View, Pressable, Text, Alert, Image } from 'react-native';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Dialog from "react-native-dialog";
+
 import AppCamera from './AppCamera';
 import { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
@@ -11,6 +13,8 @@ export default function ImageLoader() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageSelected, setImageSelected] = useState(false)
   const [startCamera, setStartCamera] = useState(false);
+  const [fileUri] = useState(null)
+
   const logoImage = require('../assets/prantos-colored.png')
 
   const pickImageAsync = async () => {
@@ -44,10 +48,9 @@ export default function ImageLoader() {
   }
 
   const convertImage = async () => {
+    const fileUri = await postImage(selectedImage, "Audio");
     setSelectedImage(null);
     setImageSelected(false);
-
-    postResponse = await postImage(selectedImage);
   }
 
 
