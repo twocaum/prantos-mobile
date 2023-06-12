@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
-import PlayerScreen from './screens/PlayerScreen'
 import AudioList from './screens/AudioListScreen';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -23,12 +22,6 @@ export default function App() {
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="home" color={color} size={30} />
               )
-            }} />
-          <Tab.Screen name="Player" component={PlayerScreen}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="play-circle" color={color} size={30} />
-              ),
             }} />
           <Tab.Screen name="AudioList" component={AudioList}
             options={{

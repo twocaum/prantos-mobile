@@ -23,19 +23,19 @@ export default function AudioList() {
     const handleAudioPress = async (audio) => {
         // TO-DO: mudar essa gambiarra
         let uri = convertLocalIdentifierToAssetLibrary(audio.id, 'mp4')
-        const { sound } = await Audio.Sound.createAsync(
+        const { soundPlaying } = await Audio.Sound.createAsync(
             { uri: uri },
             { shouldPlay: true }
         );
 
-        setSound(sound)
+        setSound(soundPlaying)
 
         await sound.playAsync()
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={{ paddingTop: 15 }}>
+            <ScrollView style={{ paddingTop: 40 }}>
                 {audio_list.map((item, idx) =>
                     <AudioListItem
                         key={idx}
@@ -48,7 +48,7 @@ export default function AudioList() {
                         onAudioPress={() => handleAudioPress(item)} />
                 )}
             </ScrollView>
-            <OptionModal
+            {/* <OptionModal
                 visible={optionModalVisible}
                 currentItem={currentItem}
                 onClose={() => {
@@ -56,7 +56,7 @@ export default function AudioList() {
                 }}
                 OnPlayPress={() => {
                     console.log("play")
-                }} />
+                }} /> */}
         </SafeAreaView >
     )
 }

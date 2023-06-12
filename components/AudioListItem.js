@@ -73,7 +73,7 @@ export default function AudioListItem({
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <View style={styles.rightContainer}>
+                {/* <View style={styles.rightContainer}>
                     <Entypo
                         onPress={onOptionPress}
                         name='dots-three-vertical'
@@ -81,7 +81,7 @@ export default function AudioListItem({
                         color={color.FONT_MEDIUM}
                         style={{ padding: 10 }}
                     />
-                </View>
+                </View> */}
             </View>
             <View style={styles.separator} />
         </>
